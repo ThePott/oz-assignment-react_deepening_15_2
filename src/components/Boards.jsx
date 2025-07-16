@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import BoardDetailModal from './BoardDetailModal';
+import { useState } from 'react';
+import useBoardStore from '../store/store';
 import BoardConfirmModal from './BoardConfirmModal';
+import BoardDetailModal from './BoardDetailModal';
 import BoardEditModal from './BoardEditModal';
 
 const typeToKorean = (type) => {
@@ -17,10 +18,15 @@ const typeToKorean = (type) => {
 };
 
 const Boards = ({ type }) => {
-  const data = [];
+  const data = useBoardStore((state) => state.data)
+  const removeBoard = useBoardStore((state) => state.removeBoard)
+
   const filteredData = data.filter((item) => item.type === type);
+
+  // ---- local states ----
   const [item, setItem] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  
   const [confirmIsOpen, setConfirmIsOpen] = useState(false);
   const [editIsOpen, setEditIsOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
@@ -42,6 +48,7 @@ const Boards = ({ type }) => {
     setConfirmIsOpen(true);
   };
   const handleConfirmModalClose = () => {
+    removeBoard(selectedId)
     setConfirmIsOpen(false);
     setSelectedId(null);
   };
