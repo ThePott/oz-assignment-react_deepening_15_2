@@ -13,6 +13,8 @@
 - `removeBoard` `item.id`를 받아 보드를 삭제하는 메서드입니다. `Array.filter`를 활용합니다.
 - `updateBoard` `item` 을 받아 `item.id`가 같은 보드의 데이터를 수정하는 메서드입니다. `Array.map`를 활용합니다.
 - `data` 보드의 배열을 저장합니다. 초기값은 더이상 존재하지 않고, 빈 배열입니다. **`[]`**
+
+
 - `persist` 미들웨어를 사용하여 데이터를 `localStorage`에 자동으로 반영되게 구현합니다.
 - `createJSONStorage`를 사용하여 데이터를 `localStorage`에 저장합니다.
 
